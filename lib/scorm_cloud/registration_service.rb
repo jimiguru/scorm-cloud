@@ -27,7 +27,7 @@ module ScormCloud
 			xml.elements["/rsp/registrationlist"].map { |e| Registration.from_xml(e) }
 		end
 
-		def get_registration_result(reg_id, format="course")
+		def get_registration_result(reg_id, format="full")
 			raise "Illegal format argument: #{format}" unless ["course","activity","full"].include?(format)
 			connection.call_raw("rustici.registration.getRegistrationResult", { :regid => reg_id, :resultsformat => format })
 		end
